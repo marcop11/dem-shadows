@@ -1,0 +1,9 @@
+<svg width="600" height="160" viewBox="0 0 600 160" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="160" fill="#000000ff"/>
+  <text x="30" y="105" font-family="Arial Black" font-size="64" fill="white">DEM</text>
+  <text x="190" y="105" font-family="Arial" font-size="64" fill="#ffd400">Shadows</text>
+
+  <circle cx="520" cy="80" r="38" fill="#ffd400"/>
+  <circle cx="500" cy="50" r="10" fill="#ffffffff"/>
+  <polygon points="475,120 565,120 520,55" fill="#000000ff" opacity="0.5"/>
+</svg>

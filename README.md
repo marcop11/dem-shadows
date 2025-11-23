@@ -1,7 +1,12 @@
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
+![Python Versions](https://img.shields.io/badge/python-3.12-brightgreen)
+![Platform](https://img.shields.io/badge/platform-windows%20|%20linux%20|%20macos-lightgrey)
+
+<img src="img/logo.svg" width="600">
+
 # DEM-Shadows  
 Generate high-resolution terrain shadow rasters and animations from DEM GeoTIFFs.
 
-<img src="img/zh_example_dtm.png" width="600">
 <img src="img/zh_example_sh.png" width="600">
 <img src="img/zh_example_ortho.png" width="600">
 
@@ -59,7 +64,7 @@ The goal is to provide **easy**, **reproducible**, and **open-source** shadow mo
 
 ### Clone & install locally
 ```bash
-git clone https://github.com/yourname/dem-shadows.git
+git clone https://github.com/marcop11/dem-shadows.git
 cd dem-shadows
 pip install -e .
 ```
@@ -167,6 +172,8 @@ Each GeoTIFF contains:
 - `0 = shadow`  
 - `1 = sunlit`  
 - `255 = nodata`  
+
+<img src="img/zh_example_dtm.png" width="600">
 
 ---
 
@@ -298,6 +305,7 @@ Located at:
 
 ```
 img/
+├── logo.svg
 ├── zh_example_sh.png
 ├── zh_example_dtm.png
 ├── zh_example_ortho.png
@@ -344,11 +352,13 @@ Features:
 - Download outputs and GIF
 
 
-Example of more digital elevation or terrain models to try:
-https://www.swisstopo.admin.ch/en/height-model-swisssurface3d-raster
+Find more digital elevation or terrain models to try:
+- [Switzerland](https://www.swisstopo.admin.ch/en/height-model-swisssurface3d-raster)
+- [Iceland](https://ftp.lmi.is/gisdata/raster/)
 
 ---
 
 ## License
+This project is licensed under [**GPLv3**](LICENSE).
 
-This project is licensed under **GPLv3**.
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
