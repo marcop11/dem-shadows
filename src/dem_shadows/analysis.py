@@ -149,7 +149,6 @@ def main_cli() -> None:
     cfg = AnalysisConfig(
         shadow_folder=args.shadow_folder,
         out_path=args.out,
-        # You can adjust these defaults later if desired
         nodata=0,
         max_value=65535,
     )

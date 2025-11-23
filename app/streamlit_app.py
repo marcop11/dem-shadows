@@ -198,12 +198,12 @@ if run_btn:
     with col_dem:
         st.subheader("DEM (grayscale)")
         dem_vis = _load_for_visual(dem_path)
-        st.image(dem_vis, clamp=True, use_column_width=True)
+        st.image(dem_vis, clamp=True, use_container_width=True)
 
     with col_shadow:
         st.subheader("Shadow (0 = shadow, 1 = sunlit)")
         shadow_vis = _load_for_visual(shadow_path)
-        st.image(shadow_vis, clamp=True, use_column_width=True)
+        st.image(shadow_vis, clamp=True, use_container_width=True)
 
     # Download link for the GeoTIFF
     with open(shadow_path, "rb") as f:
