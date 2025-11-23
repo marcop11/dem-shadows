@@ -99,9 +99,13 @@ dem-shadows/
 │   └── dem.tif              # Example DEM for README & demos
 │
 ├── img/
+│   ├── app.png
+│   ├── icon.svg
+│   ├── logo.svg
 │   ├── zh_example_sh.png
 │   ├── zh_example_dtm.png
 │   ├── zh_example_ortho.png
+│   ├── zh_example_sh_cum.png
 │   └── zh_example_animate.gif
 │
 ├── src/
@@ -116,8 +120,6 @@ dem-shadows/
 │       └── __init__.py
 │
 ├── tests/
-│   ├── dem.tif              # Test DEM
-│   ├── img.tif              # Test raster (optional)
 │   └── test_basic.py
 │
 ├── README.md
@@ -305,6 +307,8 @@ Located at:
 
 ```
 img/
+├── app.png
+├── icon.svg
 ├── logo.svg
 ├── zh_example_sh.png
 ├── zh_example_dtm.png
