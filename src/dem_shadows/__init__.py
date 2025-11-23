@@ -17,7 +17,7 @@ except PackageNotFoundError:  # pragma: no cover - during local dev
 # Re-export common user-facing functions and configs
 from .config import LocationConfig, ShadowConfig, AnalysisConfig, AnimationConfig
 from .shadows import run_shadow_batch
-from .analysis import compute_cumulative_shadow
+from .analysis import compute_cumulative
 from .animate import create_shadow_gif
 from .preprocess import merge_dems, merge_dems_in_folder
 
@@ -27,7 +27,7 @@ __all__ = [
     "AnalysisConfig",
     "AnimationConfig",
     "run_shadow_batch",
-    "compute_cumulative_shadow",
+    "compute_cumulative",
     "create_shadow_gif",
     "merge_dems",
     "merge_dems_in_folder",
