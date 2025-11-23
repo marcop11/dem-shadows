@@ -42,7 +42,7 @@ Generate high-resolution terrain shadow rasters and animations from DEM GeoTIFFs
 - Converting DEMs to metric projected CRS  
 - Computing *per-timestamp* shadow rasters using the `insolation` package  
 - Auto-detecting latitude, longitude, and timezone from DEM extent  
-- Rendering **animated GIFs** of shadow progression  
+- Rendering animated GIFs of shadow progression  
 - Rendering cumulative “shadow exposure maps"  
 
 The goal is to provide **easy**, **reproducible**, and **open-source** shadow modelling for any DEM.

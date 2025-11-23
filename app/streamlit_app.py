@@ -3,6 +3,7 @@ from __future__ import annotations
 from datetime import date, time as dtime
 from pathlib import Path
 import tempfile
+import math
 
 import numpy as np
 import rasterio
@@ -21,9 +22,9 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 
 # Example DEMs shipped with the repo.
 EXAMPLE_DEMS = {
-    "Zurich (dem.tif)": REPO_ROOT / "examples" / "dem.tif",
-    "Iceland (dem_is.tif)": REPO_ROOT / "examples" / "dem_is.tif",
-    "Paris (dem_fr.tif)": REPO_ROOT / "examples" / "dem_fr.tif",
+    "Zürich, Switzerland (dem.tif)": REPO_ROOT / "examples" / "dem.tif",
+    "Ólafsfjörður, Iceland (dem_is.tif)": REPO_ROOT / "examples" / "dem_is.tif",
+    "Paris, France (dem_fr.tif)": REPO_ROOT / "examples" / "dem_fr.tif",
 }
 
 # Logo (SVG) in img/
@@ -35,27 +36,91 @@ ICON_PATH = REPO_ROOT / "img" / "icon.svg"
 # ------------------------------------------------------------
 # Helpers
 # ------------------------------------------------------------
+
+def _hillshade(
+    elev: np.ndarray,
+    transform,
+    azimuth: float = 315.0,
+    altitude: float = 45.0,
+    z_factor: float = 1.0,
+    nodata: float | None = None,
+) -> np.ndarray:
+    """
+    Compute simple hillshade from an elevation array.
+
+    Returns uint8 0..255 (0 = dark, 255 = bright).
+    """
+    arr = elev.astype("float32").copy()
+
+    # Mask nodata
+    valid = np.isfinite(arr)
+    if nodata is not None:
+        valid &= arr != nodata
+    if not np.any(valid):
+        return np.zeros_like(arr, dtype="uint8")
+
+    # Get pixel size from affine transform
+    cellsize_x = transform.a
+    cellsize_y = -transform.e if transform.e != 0 else transform.a
+
+    # Scale vertical units if needed
+    arr[valid] *= z_factor
+
+    # Compute gradients
+    # Note: np.gradient takes spacing; we pass pixel size
+    gy, gx = np.gradient(arr, cellsize_y, cellsize_x)  # gy: dZ/dy, gx: dZ/dx
+
+    # Slope & aspect
+    slope = np.arctan(np.hypot(gx, gy))
+
+    aspect = np.arctan2(-gx, gy)  # aspect measured from north
+    # Convert from [-pi, pi] to [0, 2*pi]
+    aspect = np.where(aspect < 0, 2 * np.pi + aspect, aspect)
+
+    # Convert sun position to radians
+    az_rad = math.radians(azimuth)
+    alt_rad = math.radians(altitude)
+    zenith_rad = (math.pi / 2.0) - alt_rad
+
+    # Hillshade formula
+    hs = (
+        np.cos(zenith_rad) * np.cos(slope) +
+        np.sin(zenith_rad) * np.sin(slope) * np.cos(az_rad - aspect)
+    )
+
+    # Normalize to 0..255
+    hs = np.clip(hs, 0, 1)
+    hs_u8 = (hs * 255).astype("uint8")
+
+    # Set nodata/invalid to mid-grey or black if you prefer
+    hs_u8[~valid] = 0
+
+    return hs_u8
+
 def _load_for_visual(path: Path) -> np.ndarray:
-    """Load a single-band raster and normalize for display (0..255)."""
+    """Load a single-band raster and prepare it for display.
+
+    - For 0/1/255 shadow rasters:
+        0 = black, 1 = white, 255 = mid-grey.
+    - For DEM rasters:
+        render as hillshade (uint8 0..255).
+    """
     with rasterio.open(path) as src:
         arr = src.read(1)
-    # If it's our shadow convention 0/1/255, make a nicer visualization:
-    # 0 (shadow) -> dark, 1 (sunlit) -> bright, 255 (nodata) -> mid-gray
+        nodata = src.nodata
+        transform = src.transform
+
+    # --- Special case: shadow rasters (0/1/255) ---
     unique_vals = np.unique(arr)
     if set(unique_vals.tolist()) <= {0, 1, 255}:
         vis = np.full(arr.shape, 128, dtype="uint8")  # nodata mid-gray
-        vis[arr == 0] = 0
-        vis[arr == 1] = 255
+        vis[arr == 0] = 0      # shadow -> black
+        vis[arr == 1] = 255    # sunlit -> white
         return vis
-    # Otherwise just rescale linearly
-    arr = arr.astype("float32")
-    amin, amax = float(arr.min()), float(arr.max())
-    if amax > amin:
-        arr_n = (arr - amin) / (amax - amin)
-    else:
-        arr_n = np.zeros_like(arr)
-    return (arr_n * 255).astype("uint8")
 
+    # --- Otherwise: treat as DEM and render hillshade ---
+    hs = _hillshade(arr, transform=transform, nodata=nodata)
+    return hs
 
 def _pick_dem_path(source: str, uploaded_file, example_label: str | None) -> Path | None:
     """
