@@ -337,6 +337,7 @@ tests/
 ---
 
 ## Streamlit App
+<img src="img/app.png" width="600">
 
 You can run the GUI with:
 

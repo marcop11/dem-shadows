@@ -20,9 +20,13 @@ from dem_shadows.utils import get_dem_center_latlon, get_dem_timezone_tzfpy
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
 # Example DEM shipped with the repo.
-# Adjust this if you move the example elsewhere.
 EXAMPLE_DEM = REPO_ROOT / "examples" / "dem.tif"
 
+# Logo (SVG) in img/
+LOGO_PATH = REPO_ROOT / "img" / "logo.svg"
+
+# Icon (SVG) in img/
+ICON_PATH = REPO_ROOT / "img" / "icon.svg"
 
 # ------------------------------------------------------------
 # Helpers
@@ -73,8 +77,21 @@ def _pick_dem_path(source: str, uploaded_file) -> Path | None:
 # ------------------------------------------------------------
 # Streamlit UI
 # ------------------------------------------------------------
-st.set_page_config(page_title="DEM Shadows", layout="wide")
-st.title("🌄 DEM Shadows – Single Time Step")
+st.set_page_config(
+    page_title="DEM Shadows",
+    page_icon=str(ICON_PATH),   # use logo as tab icon
+    layout="wide",
+)
+
+# Header with logo or title
+if LOGO_PATH.exists():
+    # Big logo as the “title”
+    st.image(str(LOGO_PATH), width=360)
+    st.caption("Generate terrain shadow rasters from DEM GeoTIFFs")
+else:
+    # Fallback: text title if logo missing
+    st.title("🌄 DEM Shadows – Single Time Step")
+    st.caption("Generate terrain shadow rasters from DEM GeoTIFFs")
 
 st.markdown(
     """
