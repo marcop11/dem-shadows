@@ -19,8 +19,12 @@ from dem_shadows.utils import get_dem_center_latlon, get_dem_timezone_tzfpy
 # Repo root (works when you run: streamlit run app/streamlit_app.py)
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
-# Example DEM shipped with the repo.
-EXAMPLE_DEM = REPO_ROOT / "examples" / "dem.tif"
+# Example DEMs shipped with the repo.
+EXAMPLE_DEMS = {
+    "Zurich (dem.tif)": REPO_ROOT / "examples" / "dem.tif",
+    "Iceland (dem_is.tif)": REPO_ROOT / "examples" / "dem_is.tif",
+    "Paris (dem_fr.tif)": REPO_ROOT / "examples" / "dem_fr.tif",
+}
 
 # Logo (SVG) in img/
 LOGO_PATH = REPO_ROOT / "img" / "logo.svg"
@@ -53,7 +57,7 @@ def _load_for_visual(path: Path) -> np.ndarray:
     return (arr_n * 255).astype("uint8")
 
 
-def _pick_dem_path(source: str, uploaded_file) -> Path | None:
+def _pick_dem_path(source: str, uploaded_file, example_label: str | None) -> Path | None:
     """
     Save uploaded DEM to a temp file or return example path.
     Returns a filesystem Path or None if nothing chosen.
@@ -66,13 +70,16 @@ def _pick_dem_path(source: str, uploaded_file) -> Path | None:
         dem_path.write_bytes(uploaded_file.getbuffer())
         return dem_path
     else:
-        # Example DEM from repo
-        if not EXAMPLE_DEM.exists():
-            st.error(f"Example DEM not found at {EXAMPLE_DEM}. "
-                     "Adjust EXAMPLE_DEM path in streamlit_app.py.")
+        if example_label is None:
             return None
-        return EXAMPLE_DEM
-
+        path = EXAMPLE_DEMS.get(example_label)
+        if path is None or not path.exists():
+            st.error(
+                f"Example DEM '{example_label}' not found. "
+                "Check EXAMPLE_DEMS in streamlit_app.py."
+            )
+            return None
+        return path
 
 # ------------------------------------------------------------
 # Streamlit UI
@@ -101,7 +108,7 @@ for a chosen **date and local time**.
 You can either:
 
 1. Upload your own DEM, or  
-2. Use the example DEM bundled in this repo (`examples/dem.tif`).
+2. Use one of the example DEMs bundled in this repo (`examples/*.tif`).
 """
 )
 
@@ -113,8 +120,15 @@ source = st.sidebar.radio(
 )
 
 uploaded = None
+example_label = None
+
 if source == "Upload DEM GeoTIFF":
     uploaded = st.sidebar.file_uploader("Upload DEM (.tif)", type=["tif", "tiff"])
+else:
+    example_label = st.sidebar.selectbox(
+        "Select example DEM",
+        list(EXAMPLE_DEMS.keys()),
+    )
 
 # --- Date and time
 st.sidebar.header("Date & time")
@@ -143,9 +157,9 @@ run_btn = st.sidebar.button("Generate shadow")
 # Main logic
 # ------------------------------------------------------------
 if run_btn:
-    dem_path = _pick_dem_path(source, uploaded)
+    dem_path = _pick_dem_path(source, uploaded, example_label)
     if dem_path is None:
-        st.error("Please provide a DEM or fix the example DEM path.")
+        st.error("Please provide a DEM or select a valid example DEM.")
         st.stop()
 
     # Show DEM quick info

@@ -1,6 +1,8 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
 ![Python Versions](https://img.shields.io/badge/python-3.12-brightgreen)
 ![Platform](https://img.shields.io/badge/platform-windows%20|%20linux%20|%20macos-lightgrey)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://dem-shadows.streamlit.app/)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/marcop11/dem-shadows/blob/main/notebooks/try_it_yourself.ipynb)
 
 <img src="img/logo.svg" width="600">
 
@@ -26,6 +28,7 @@ Generate high-resolution terrain shadow rasters and animations from DEM GeoTIFFs
   - [`dem-shadows-animate`](#dem-shadows-animate)
   - [`dem-shadows-cumulate`](#dem-shadows-cumulate)
 - [Examples](#examples)
+- [Notebooks](#notebooks)
 - [Testing](#testing)
 - [Streamlit App](#streamlit-app)
 - [License](#license)
@@ -107,6 +110,9 @@ dem-shadows/
 │   ├── zh_example_ortho.png
 │   ├── zh_example_sh_cum.png
 │   └── zh_example_animate.gif
+│
+├── notebooks/
+│   └── try_it_yourself.ipynb
 │
 ├── src/
 │   └── dem_shadows/
@@ -321,6 +327,14 @@ These are referenced inside this README.
 
 ---
 
+## Notebooks
+
+Google Colab notebook:
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/marcop11/dem-shadows/blob/main/notebooks/try_it_yourself.ipynb)
+
+---
+
 ## Testing
 
 Run all tests:
@@ -341,6 +355,10 @@ tests/
 ---
 
 ## Streamlit App
+Try the live web interface:
+
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://dem-shadows.streamlit.app/)
+
 <img src="img/app.png" width="600">
 
 You can run the GUI with:
@@ -360,6 +378,7 @@ Features:
 Find more digital elevation or terrain models to try:
 - [Switzerland](https://www.swisstopo.admin.ch/en/height-model-swisssurface3d-raster)
 - [Iceland](https://ftp.lmi.is/gisdata/raster/)
+- [France](https://cartes.gouv.fr/telechargement/IGNF_MNH-LIDAR-HD)
 
 ---
 
