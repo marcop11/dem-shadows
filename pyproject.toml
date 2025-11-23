@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dem-shadows"
+version = "0.1.0"
+description = "Generate terrain shadow rasters and animations from DEM GeoTIFFs"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "GPLv3" }
+authors = [
+  { name = "Marco Pizzolato" }
+]
+dependencies = [
+  "astral>=3.0",
+  "rasterio>=1.3",
+  "numpy>=1.24",
+  "tqdm>=4.60",
+  "Pillow>=10.0",
+  "insolation>=0.1.9",
+  "pandas",
+  "tzfpy>=1.1.0",
+  "numba>=0.59",
+  "scipy>=1.10",
+]
+
+[project.optional-dependencies]
+demo = ["streamlit>=1.37"]
+
+[project.scripts]
+dem-shadows-generate = "dem_shadows.shadows:main_cli"
+dem-shadows-cumulate = "dem_shadows.analysis:main_cli"
+dem-shadows-animate = "dem_shadows.animate:main_cli"
