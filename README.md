@@ -31,6 +31,7 @@ Generate high-resolution terrain shadow rasters and animations from DEM GeoTIFFs
 - [Notebooks](#notebooks)
 - [Testing](#testing)
 - [Streamlit App](#streamlit-app)
+- [Author](#author)
 - [License](#license)
 
 ---
@@ -214,7 +215,7 @@ dem-shadows-cumulate ^
 This produces a raster where the value of each pixel equals:
 
 ```
-Number of hours of sun for per pixel
+Number of hours of sun per pixel
 ```
 
 Example Cumulative Shadows (included in repo):
@@ -297,6 +298,31 @@ usage: dem-shadows-cumulate [OPTIONS]
 --out PATH
 ```
 
+## Python API example
+
+You can also call the core functionality from Python:
+
+```python
+from pathlib import Path
+from datetime import date
+from dem_shadows import LocationConfig, ShadowConfig, run_shadow_batch
+
+dem_path = Path("examples/dem.tif")
+out_dir = Path("out")
+
+loc = LocationConfig(latitude=47.38, longitude=8.53, timezone="Europe/Zurich")
+cfg = ShadowConfig(
+    dem_path=dem_path,
+    out_dir=out_dir,
+    location=loc,
+    start_date=date(2025, 3, 8),
+    end_date=date(2025, 3, 8),
+    step_minutes=60,
+)
+
+run_shadow_batch(cfg)
+```
+
 ---
 
 ## Examples
@@ -305,7 +331,10 @@ usage: dem-shadows-cumulate [OPTIONS]
 Located at:
 
 ```
-examples/dem.tif
+examples/
+├── dem.tif
+├── dem_is.tif
+└── dem_fr.tif
 ```
 
 ### Example imagery and shadow screenshots
@@ -379,6 +408,15 @@ Find more digital elevation or terrain models to try:
 - [Switzerland](https://www.swisstopo.admin.ch/en/height-model-swisssurface3d-raster)
 - [Iceland](https://ftp.lmi.is/gisdata/raster/)
 - [France](https://cartes.gouv.fr/telechargement/IGNF_MNH-LIDAR-HD)
+
+---
+## Author
+
+Marco Pizzolato – [marcop11](https://github.com/marcop11)
+
+Date: 24.11.2025
+
+Version: 0.1.0
 
 ---
 

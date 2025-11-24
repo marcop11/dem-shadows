@@ -25,6 +25,29 @@ dependencies = [
   "scipy>=1.10",
 ]
 
+keywords = ["dem", "dtm", "terrain", "shadow", "solar", "gis", "geospatial"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Science/Research",
+  "Intended Audience :: Other Audience",
+  "Topic :: Scientific/Engineering",
+  "Topic :: Scientific/Engineering :: GIS",
+  "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/marcop11/dem-shadows"
+Source = "https://github.com/marcop11/dem-shadows"
+Issues = "https://github.com/marcop11/dem-shadows/issues"
+Streamlit = "https://dem-shadows.streamlit.app/"
+
 [project.optional-dependencies]
 demo = ["streamlit>=1.37"]
 
