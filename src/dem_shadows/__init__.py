@@ -12,7 +12,7 @@ from importlib.metadata import version, PackageNotFoundError
 try:
     __version__ = version("dem-shadows")
 except PackageNotFoundError:  # pragma: no cover - during local dev
-    __version__ = "0.0.0"
+    __version__ = "0.1.0"
 
 # Re-export common user-facing functions and configs
 from .config import LocationConfig, ShadowConfig, AnalysisConfig, AnimationConfig

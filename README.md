@@ -1,16 +1,17 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
+[![PyPI version](https://img.shields.io/pypi/v/dem-shadows.svg)](https://pypi.org/project/dem-shadows/)
 ![Python Versions](https://img.shields.io/badge/python-3.12-brightgreen)
 ![Platform](https://img.shields.io/badge/platform-windows%20|%20linux%20|%20macos-lightgrey)
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://dem-shadows.streamlit.app/)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/marcop11/dem-shadows/blob/main/notebooks/try_it_yourself.ipynb)
 
-<img src="https://github.com/marcop11/dem-shadows/blob/main/img/logo.svg" width="600">
+![](https://raw.githubusercontent.com/marcop11/dem-shadows/refs/heads/main/img/logo.svg)
 
 # DEM-Shadows  
 Generate high-resolution terrain shadow rasters and animations from DEM GeoTIFFs.
 
-<img src="https://github.com/marcop11/dem-shadows/blob/main/img/zh_example_sh.png" width="600">
-<img src="https://github.com/marcop11/dem-shadows/blob/main/img/zh_example_ortho.png" width="600">
+![](https://raw.githubusercontent.com/marcop11/dem-shadows/refs/heads/main/img/zh_example_sh.png)
+![](https://raw.githubusercontent.com/marcop11/dem-shadows/refs/heads/main/img/zh_example_ortho.png)
 
 ---
 
@@ -65,6 +66,12 @@ The goal is to provide **easy**, **reproducible**, and **open-source** shadow mo
 ---
 
 ## Installation
+Package on PyPI: https://pypi.org/project/dem-shadows/
+
+### Install simply
+```bash
+pip install dem-shadows
+```
 
 ### Clone & install locally
 ```bash
@@ -182,7 +189,7 @@ Each GeoTIFF contains:
 - `1 = sunlit`  
 - `255 = nodata`  
 
-<img src="https://github.com/marcop11/dem-shadows/blob/main/img/zh_example_dtm.png" width="600">
+![](https://raw.githubusercontent.com/marcop11/dem-shadows/refs/heads/main/img/zh_example_dtm.png)
 
 ---
 
@@ -200,7 +207,7 @@ Example GIF (included in repo):
 
 Shadows of Zürich on 8th March 2025.
 
-<img src="https://github.com/marcop11/dem-shadows/blob/main/img/zh_example_animate.gif" width="600">
+![](https://raw.githubusercontent.com/marcop11/dem-shadows/refs/heads/main/img/zh_example_animate.gif)
 
 ---
 
@@ -222,7 +229,7 @@ Example Cumulative Shadows (included in repo):
 
 Cumulative shadows of Zürich on 8th March 2025.
 
-<img src="https://github.com/marcop11/dem-shadows/blob/main/img/zh_example_sh_cum.png" width="600">
+![](https://raw.githubusercontent.com/marcop11/dem-shadows/refs/heads/main/img/zh_example_sh_cum.png)
 
 ---
 
@@ -388,7 +395,7 @@ Try the live web interface:
 
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://dem-shadows.streamlit.app/)
 
-<img src="https://github.com/marcop11/dem-shadows/blob/main/img/app.png" width="600">
+![](https://raw.githubusercontent.com/marcop11/dem-shadows/refs/heads/main/img/app.png)
 
 You can run the GUI with:
 
