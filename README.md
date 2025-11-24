@@ -4,13 +4,13 @@
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://dem-shadows.streamlit.app/)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/marcop11/dem-shadows/blob/main/notebooks/try_it_yourself.ipynb)
 
-<img src="img/logo.svg" width="600">
+<img src="https://github.com/marcop11/dem-shadows/blob/main/img/logo.svg" width="600">
 
 # DEM-Shadows  
 Generate high-resolution terrain shadow rasters and animations from DEM GeoTIFFs.
 
-<img src="img/zh_example_sh.png" width="600">
-<img src="img/zh_example_ortho.png" width="600">
+<img src="https://github.com/marcop11/dem-shadows/blob/main/img/zh_example_sh.png" width="600">
+<img src="https://github.com/marcop11/dem-shadows/blob/main/img/zh_example_ortho.png" width="600">
 
 ---
 
@@ -182,7 +182,7 @@ Each GeoTIFF contains:
 - `1 = sunlit`  
 - `255 = nodata`  
 
-<img src="img/zh_example_dtm.png" width="600">
+<img src="https://github.com/marcop11/dem-shadows/blob/main/img/zh_example_dtm.png" width="600">
 
 ---
 
@@ -200,7 +200,7 @@ Example GIF (included in repo):
 
 Shadows of Zürich on 8th March 2025.
 
-<img src="img/zh_example_animate.gif" width="600">
+<img src="https://github.com/marcop11/dem-shadows/blob/main/img/zh_example_animate.gif" width="600">
 
 ---
 
@@ -222,7 +222,7 @@ Example Cumulative Shadows (included in repo):
 
 Cumulative shadows of Zürich on 8th March 2025.
 
-<img src="img/zh_example_sh_cum.png" width="600">
+<img src="https://github.com/marcop11/dem-shadows/blob/main/img/zh_example_sh_cum.png" width="600">
 
 ---
 
@@ -388,7 +388,7 @@ Try the live web interface:
 
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://dem-shadows.streamlit.app/)
 
-<img src="img/app.png" width="600">
+<img src="https://github.com/marcop11/dem-shadows/blob/main/img/app.png" width="600">
 
 You can run the GUI with:
 
