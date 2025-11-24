@@ -1,0 +1,4 @@
+include README.md
+recursive-include img *
+recursive-include examples *
+recursive-include notebooks *
